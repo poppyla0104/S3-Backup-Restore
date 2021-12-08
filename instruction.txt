@@ -1,0 +1,62 @@
+Poppy La
+File name: instruction.txt
+# Instructor: Dr.Dimpsey
+# Date: 11/14/2021
+# Course: CSS436
+# Program 3: BACKUP/RESTORE
+
+----------------------------------------------------------
+                        NOTE
+----------------------------------------------------------
+- Program3 written in python, utilizes Boto3
+
+- User credentials needed to be setup in personal computer
+
+- If the file/folder that's needed to be backed up is in a different folder
+with the backup.py/restore.py files, an absolute path of the file/folder must be 
+passed in order to locate the file/folder location.
+
+- If the file/folder that's needed to be backed up is in the same folder with the backup.py/restore.py
+files, only the folder/file name needed to be passed. If there are spaces within the file/folder name,
+put the name inside quotation marks.
+
+- Empty folders should not exist.
+
+----------------------------------------------------------
+                        BACKUP
+----------------------------------------------------------
+- Navigate to the folder contains backup.py
+
+- Compile and run backup.py file with command:
+	python backup.py <fileName or fileLocalPath> <bucketName>::<bucketFileName or bucketLocationPath>
+
+- Example: 
+   - If the folder name have space, put inside quotation marks. The folder name on cloud can not have spaces:
+      - python backup.py "Poppy La Test" morphmi::PoppyLaTest
+   
+   - If the folder/file needed to back up is in the same location with python file backup.py:
+      - python backup.py PoppyLaTest morphmi::PoppyLaTest (PoppyLaTest saved in bucket)
+      - python backup.py PoppyLaTest morphmi::lala (PoppyLaTest saved in lala folder of bucket)
+
+   - If the folder/file needed to back up is in the different location with python file backup.py:
+      - python backup.py /Users/poppyla/Desktop/PoppyLaTest morphmi::Users/poppyla/Desktop/PoppyLaTest (directory saved in bucket)
+      - python backup.py /Users/poppyla/Desktop/PoppyLaTest morphmi::lala (directory saved in lala folder of bucket)
+
+----------------------------------------------------------
+                        RESTORE
+----------------------------------------------------------
+- Navigate to the folder contains restore.py
+
+- Compile and run backup.py file with command:
+	python restore.py <bucketName>::<bucketFileName or bucketLocationPath> <fileName or fileLocalPath> 
+
+- Example: 
+   - If the folder name have space, put inside quotation marks:
+      - python restore.py morphmi::PoppyLaTest "Poppy La Test"
+   
+   - Restore folder/file in the same location with python file restore.py:
+      - python restore.py morphmi::PoppyLaTest PoppyLaTest
+      - python restore.py morphmi::lala PoppyLaTest (PoppyLaTest directory restored in lala folder)
+
+   - Restore folder/file in the different location with python file restore.py:
+      - python restore.py morphmi::PoppyLaTest /Users/poppyla/Desktop/PoppyLaTest (directory saved in absolute path local location)
